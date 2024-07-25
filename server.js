@@ -1,11 +1,13 @@
 //Importando as Bibliotecas
-const express = require('express'); //importa o framework Express
 const dotenv = require('dotenv'); //importa o pacote dotenv para gerenciar variáveis de ambiente
+//Configurando as variáveis de ambiente
+dotenv.config(); //carrega as variáveis definidas no arquivo .env para process.env
+//Continuando a importação das bibliotecas
+const express = require('express'); //importa o framework Express
 const cors = require('cors'); //importa o pacote cors para permitir requisições de diferentes origens
 const bodyParser = require('body-parser'); //importa o pacote body-parser para analisar o corpo das requisições HTTP
 
-//Configurando as variáveis de ambiente
-dotenv.config(); //carrega as variáveis definidas no arquivo .env para process.env
+const db = require('./config/db'); //importa a conexão com o banco de dados
 
 //Inicializando uma nova aplicação Express
 const app = express();
