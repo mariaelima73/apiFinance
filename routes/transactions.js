@@ -3,7 +3,12 @@ const router = express.Router(); //cria um roteador
 const transactionsController = require('../controllers/transactionsController'); //importa o controlador de transações
 
 //Definir uma rota para obter todas as transações
-router.get('./',transactionsController.getAllTrasactions);
+router.get('/',transactionsController.getAllTransactions);
+
+//Definir uma rota para adicionar uma nova transação
+router.post('/', transactionsController.addTransaction);
+
+
 
 //Exportar o roteador
 module.exports = router;
