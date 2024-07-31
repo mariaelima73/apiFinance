@@ -20,8 +20,8 @@ const addTransaction = (req, res) => {
         [date, amount, description, category, account, user_id],
         (err, results) => {
             if(err){
-                console.error('Erro ao adicionar a transação', err);
-                res.status(500).send('Erro ao adicionar a transação');
+                console.error('Erro ao adicionar a transação.', err);
+                res.status(500).send('Erro ao adicionar a transação.');
                 return;
             }
         res.status(201).send('Transação adicionada!');
@@ -29,7 +29,45 @@ const addTransaction = (req, res) => {
     );
 };
 
+//Função para atualizar uma transação existente (substituição completa)
+const updateTransactionTotal = (req, res) => {
+    const{id} = req.params;
+    const{date, amount, description, category, account, user_id} = req.body;
+    db.query(
+        'UPDATE transactions SET date = ?, amount = ?, description = ?, category = ?, account = ?, user_id = ? WHERE id = ?',
+        [date, amount, description, category, account, user_id, id],
+        (err, results) => {
+            if(err){
+                console.error('Erro ao atualizar a transação.', err);
+                res.status(500).send('Erro ao atualizar a transação.');
+                return;
+            }
+        res.send('Transação atualizada!');
+        }
+    );
+};
+
+//Função para atualizar uma transação existente (substituição parcial)
+const updateTransactionParcial = (req, res) => {
+    const{id} = req.params;
+    const{date, amount, description, category, account, user_id} = req.body;
+    db.query(
+        'UPDATE transactions SET date = ?, amount = ?, description = ?, category = ?, account = ?, user_id = ? WHERE id = ?',
+        [date, amount, description, category, account, user_id, id],
+        (err, results) => {
+            if(err){
+                console.error('Erro ao atualizar a transação.', err);
+                res.status(500).send('Erro ao atualizar a transação.');
+                return;
+            }
+        res.send('Transação atualizada!');
+        }
+    );
+};
+
 module.exports = {
     getAllTransactions,
-    addTransaction
+    addTransaction,
+    updateTransactionTotal,
+    updateTransactionParcial
 };
